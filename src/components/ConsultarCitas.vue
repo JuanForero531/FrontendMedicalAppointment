@@ -15,7 +15,7 @@
           <p>Código: {{ cita.code }}</p>
           <p>CC: {{ cita.cc }}</p>
           <p>Fecha: {{ cita.date }}</p>
-          <img :src="`http://localhost:3000/${cita.authorization}`" alt="Authorization" />
+          <img v-if="cita.authorization" :src="'data:image/jpeg;base64,' + cita.authorization" alt="Imagen de autorización" />
         </li>
       </ul>
       <div v-if="mensajeConsulta">{{ mensajeConsulta }}</div>
