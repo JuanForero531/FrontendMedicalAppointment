@@ -10,20 +10,20 @@
 </template>
 <style>
 header {
-    background-color: #3498db; /* Color de fondo */
-    color: white; /* Texto en blanco */
+    background-color: #3498db;
+    color: white; 
     padding: 20px;
     text-align: center;
-    position: initial; /* Fijo en la parte superior */
+    position: initial; 
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-    z-index: 1000; /* Para que se superponga al contenido */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
 }
 
 main {
-    margin-top: 80px; /* Espacio debajo del header para que el contenido no lo cubra */
+    margin-top: 80px; 
 }
 </style>
 

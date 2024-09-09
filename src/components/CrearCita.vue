@@ -13,18 +13,16 @@
 
       <button type="submit">Crear Cita</button>
     </form>
-
-    <!-- Mostrar código de cita si se crea exitosamente -->
+    
     <div v-if="codigoCita" class="success">
       <p>Cita creada con éxito. Código de la cita: {{ codigoCita }}</p>
     </div>
-
-    <!-- Mostrar mensaje de éxito -->
+    
     <div v-if="mensajeExito" class="success">
       <p>{{ mensajeExito }}</p>
     </div>
 
-    <!-- Mostrar mensaje de error -->
+    
     <div v-if="mensajeError" class="error">
       <p>{{ mensajeError }}</p>
     </div>
@@ -41,8 +39,8 @@ export default {
       fecha: '',
       autorizacion: null,
       codigoCita: '',
-      mensajeExito: '',   // Mensaje de éxito
-      mensajeError: ''    // Mensaje de error
+      mensajeExito: '',  
+      mensajeError: ''   
     };
   },
   methods: {
@@ -66,16 +64,18 @@ export default {
         
         this.codigoCita = response.data.code;
 
-        // Mostrar mensaje de éxito
-        alert('Cita creada exitosamente\nCódigo de cita: ' + response.data.code);
-        this.mensajeError = ""; // Limpiar cualquier mensaje de error
+        alert('Cita creada\nCódigo de cita: ' + response.data.code);
+        this.mensajeError = ""; 
 
       } catch (error) {
-        console.error('Error al crear la cita:', error);
-
-        // Mostrar mensaje de error
-        this.mensajeError = "Hubo un error al crear la cita. Inténtalo de nuevo.";
-        this.mensajeExito = ""; // Limpiar cualquier mensaje de éxito
+        this.mensajeExito = "";
+        if (error.response) {
+          this.mensajeError = error.response.data.message;
+          console.log('Error al crear la cita:', this.mensajeError);
+        } else {
+          this.mensajeError = 'Error de red o de servidor al crear la cita';
+          console.log('Error al crear la cita:', this.mensajeError);
+        }
       }
     }
   }
