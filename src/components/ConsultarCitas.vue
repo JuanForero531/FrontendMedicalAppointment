@@ -15,7 +15,8 @@
           <p>Código: {{ cita.code }}</p>
           <p>CC: {{ cita.cc }}</p>
           <p>Fecha: {{ cita.date }}</p>
-          <img v-if="cita.authorization" :src="'data:image/jpeg;base64,' + cita.authorization" alt="Imagen de autorización" />
+          <p>Estado:{{ cita.status }}</p>
+          <img :src="`http://localhost:3000/images?imagePath=${cita.authorization}`" alt="Authorization" />
         </li>
       </ul>
       <div v-if="mensajeConsulta">{{ mensajeConsulta }}</div>
@@ -40,6 +41,7 @@
         try {
           const response = await axios.get(`http://localhost:3000/appointments?start=${this.fechaInicio}&end=${this.fechaFin}`);
           this.citas = response.data;
+
         } catch (error) {
           if (error.response) {
           this.mensajeConsulta = error.response.data.message;
